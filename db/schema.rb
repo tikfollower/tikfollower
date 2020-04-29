@@ -12,7 +12,10 @@
 
 ActiveRecord::Schema.define(version: 2020_04_25_184241) do
 
-  create_table "subscription_masters", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "subscription_masters", force: :cascade do |t|
     t.string "subscription_id"
     t.float "price"
     t.integer "stars"
@@ -20,7 +23,7 @@ ActiveRecord::Schema.define(version: 2020_04_25_184241) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "user_subscriptions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "user_subscriptions", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "subscription_master_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -29,7 +32,7 @@ ActiveRecord::Schema.define(version: 2020_04_25_184241) do
     t.index ["user_id"], name: "index_user_subscriptions_on_user_id"
   end
 
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "tiktok_username"
     t.integer "total_count_stars"
     t.datetime "created_at", precision: 6, null: false
